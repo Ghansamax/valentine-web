@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Favorite Person 💖</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  overflow: hidden;
+  color: white;
+}
+
+.container {
+  padding: 20px;
+  max-width: 400px;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background: white;
+  color: #ff4f7b;
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+#noBtn {
+  background: #ff1744;
+  color: white;
+  position: absolute;
+}
+
+.message {
+  margin-top: 25px;
+  animation: fade 1s ease-in-out;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.gallery img {
+  width: 250px;
+  border-radius: 15px;
+  margin-top: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+iframe {
+  margin-top: 15px;
+  border-radius: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Mau Jadi Valentine Aku? 💕</h1>
+  <button id="yesBtn">Yes 💖</button>
+  <button id="noBtn">No 😢</button>
+  <div id="result"></div>
+</div>
+
+<script>
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const result = document.getElementById("result");
+
+const photos = ["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg"];
+
+noBtn.addEventListener("mouseover", () => {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
+
+yesBtn.addEventListener("click", () => {
+  result.innerHTML = `
+    <div class="message">
+      <h2>Hehe… Aku Tau Kamu Pilih Yes 💖</h2>
+      <p>
+        Dari semua hal yang pernah aku temuin,  
+        kamu yang paling bikin aku nyaman.  
+        Nggak perlu kata ribet…  
+        cukup kamu tetap di sini ✨
+      </p>
+
+      <div class="gallery">
+        <img id="slide" src="foto1.jpg">
+      </div>
+
+      <iframe src="https://open.spotify.com/embed/track/3vkCueOmm7xQDoJ17W1Pm3"
+        width="300" height="80"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+  `;
+
+  let index = 0;
+  setInterval(() => {
+    index = (index + 1) % photos.length;
+    document.getElementById("slide").src = photos[index];
+  }, 2500);
+});
+
+</script>
+
+</body>
+</html>
